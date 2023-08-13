@@ -1,7 +1,7 @@
 export default {
-  input: 'porro.mjs',
+  input: 'index.mjs',
   output: {
-    file: 'porro.cjs',
+    file: 'index.cjs',
     format: 'cjs'
   }
 }
