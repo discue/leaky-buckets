@@ -130,7 +130,7 @@ test('refill', async t => {
 })
 
 test('quantity', async t => {
-  t.plan(9)
+  t.plan(7)
 
   const bucket = new Porro({
     bucketSize: 10,
@@ -144,10 +144,8 @@ test('quantity', async t => {
   t.is(bucket.request(7), 0)
   t.true(bucket.request(1) > 0)
   t.is(bucket.tokens, -1)
-  t.is(bucket.bucket, -1)
-  await sleep(bucket.interval)
+  await sleep(bucket._interval)
   t.is(bucket.tokens, 1)
-  t.is(bucket.bucket, 1)
 })
 
 test('promise', async t => {
