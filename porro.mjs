@@ -45,7 +45,7 @@ export class Porro {
   /**
    * Refill the bucket from the previous iteration.
    */
-  refill () {
+  refill() {
     // Number of tokens refilled from the last call
     const now = Date.now()
     const tokens = Math.floor(
@@ -67,7 +67,7 @@ export class Porro {
    * @param {number} [quantity] Number (positive integer) of "tokens" to burn for the current request. Defaults to `1`.
    * @returns {number}
    */
-  request (quantity = 1) {
+  request(quantity = 1) {
     if (!Number.isInteger(quantity) || quantity < 1) {
       throw new TypeError('Tokens quantity must be a positive integer')
     }
@@ -94,7 +94,7 @@ export class Porro {
   /**
    * Reset bucket to its initial status.
    */
-  reset () {
+  reset() {
     this._tokens = this.bucketSize
     this._lastRequest = Date.now()
   }
@@ -104,7 +104,7 @@ export class Porro {
    * @param {number} [quantity] Number (positive integer) of "tokens" to burn for the current request. Defaults to `1`.
    * @returns {Promise} Resolves with the waited milliseconds.
    */
-  throttle (quantity = 1) {
+  throttle(quantity = 1) {
     if (!Number.isInteger(quantity) || quantity < 1) {
       return Promise.reject(
         new TypeError('Tokens quantity must be a positive integer')
