@@ -6,6 +6,5 @@ index.cjs
 !.nycrc
 coverage
 node_modules
-package-lock.json
 porro.cjs
 yarn.lock
