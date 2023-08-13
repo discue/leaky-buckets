@@ -1,18 +1,4 @@
 export class Porro {
-  /**
-   * @deprecated Use `.tokens` instead.
-   */
-  get bucket () {
-    return this.tokens
-  }
-
-  /**
-   * Returns the current number of tokens inside the bucket.
-   */
-  get tokens () {
-    this.refill()
-    return this._tokens
-  }
 
   /**
    * @constructor
@@ -21,7 +7,7 @@ export class Porro {
    * @param {number} options.interval - Time interval in ms when tokens are refilled.
    * @param {number} options.tokensPerInterval - Number of refilled tokens per interval.
    */
-  constructor (options) {
+  constructor(options) {
     if (typeof options !== 'object' || options === null) {
       options = {}
     }
@@ -46,6 +32,14 @@ export class Porro {
     this.tokensPerInterval = tokensPerInterval
 
     this.reset()
+  }
+
+  /**
+   * Returns the current number of tokens inside the bucket.
+   */
+  get tokens() {
+    this.refill()
+    return this._tokens
   }
 
   /**
