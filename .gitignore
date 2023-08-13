@@ -1,4 +1,5 @@
 .*
+index.cjs
 !.editorconfig
 !.github
 !.gitignore
