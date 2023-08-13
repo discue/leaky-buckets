@@ -7,11 +7,7 @@ export class Porro {
    * @param {number} options.interval - Time interval in ms when tokens are refilled.
    * @param {number} options.tokensPerInterval - Number of refilled tokens per interval.
    */
-  constructor(options) {
-    if (typeof options !== 'object' || options === null) {
-      options = {}
-    }
-
+  constructor(options = {}) {
     const bucketSize = options.bucketSize || 0
     if (!Number.isInteger(bucketSize) || bucketSize <= 0) {
       throw new TypeError('Option bucketSize must be a positive integer')
