@@ -1,25 +1,50 @@
 {
-  "name": "@discue/mongodb-leaky-bucket",
+  "name": "@discue/leaky-buckets",
   "version": "2.1.1",
   "description": "Fast leaky bucket algorithm implementation without timers",
   "type": "module",
-  "main": "./porro.cjs",
-  "types": "./porro.d.ts",
+  "main": "./index.cjs",
+  "types": "./index.d.mts",
   "exports": {
-    "import": "./porro.mjs",
-    "require": "./porro.cjs",
-    "types": "./porro.d.ts"
+    "import": "./index.mjs",
+    "require": "./index.cjs",
+    "types": "./index.d.mts"
   },
   "files": [
-    "porro.d.ts",
-    "porro.cjs",
-    "porro.mjs"
+    "porro.d.mts",
+    "porro.mjs",
+    "persistent-porro.d.mts",
+    "persistent-porro.mjs",
+    "index.d.mts",
+    "index.mjs"
   ],
   "scripts": {
     "build": "rollup -c",
     "lint": "standard",
+    "create-types": "npx tsc index.mjs --declaration --emitDeclarationOnly --allowJs",
     "prepublishOnly": "npm run lint && npm run build && npm run test",
-    "test": "c8 ava"
+    "test": "c8 ava --timeout 20s"
+  },
+  "author": "Giacomo Gregoletto",
+  "contributors": [
+    "Stefan Pfaffel <s.pfaffel@gmail.com>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/discue/leaky-buckets/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/discue/leaky-buckets"
+  },
+  "devDependencies": {
+    "ava": "^5.1.1",
+    "c8": "^7.12.0",
+    "mongodb": "^5.7.0",
+    "mongodb-memory-server": "^8.14.0",
+    "rollup": "^3.11.0",
+    "standard": "^17.0.0",
+    "typescript": "^5.1.6"
   },
   "keywords": [
     "leaky",
@@ -27,23 +52,5 @@
     "algorithm",
     "leek",
     "porro"
-  ],
-  "author": "Giacomo Gregoletto",
-  "contributors": [
-    "Stefan Pfaffel <s.pfaffel@gmail.com>"
-  ],
-  "license": "MIT",
-  "devDependencies": {
-    "ava": "^5.1.1",
-    "c8": "^7.12.0",
-    "rollup": "^3.11.0",
-    "standard": "^17.0.0"
-  },
-  "bugs": {
-    "url": "https://github.com/discue/mongodb-leaky-bucket/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/discue/mongodb-leaky-bucket"
-  }
+  ]
 }
