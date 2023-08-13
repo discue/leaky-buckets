@@ -3,13 +3,7 @@ export class Porro {
   /**
    * @constructor
    * @param {Object} options
-   * @param {number} options.bucketSize - Number of tokens available inside the bucket.
-   * @param {number} options.interval - Time interval in ms when tokens are refilled.
-   * @param {number} options.tokensPerInterval - Number of refilled tokens per interval.
-   */
-  constructor(options = {}) {
-    const bucketSize = options.bucketSize || 0
-    if (!Number.isInteger(bucketSize) || bucketSize <= 0) {
+   * @parefa(!Number.isInteger(bucketSize) || bucketSize <= 0) {
       throw new TypeError('Option bucketSize must be a positive integer')
     }
 
@@ -23,11 +17,12 @@ export class Porro {
       throw new TypeError('Option tokensPerInterval must be a positive integer')
     }
 
-    this.bucketSize = bucketSize
-    this.interval = interval
-    this.tokensPerInterval = tokensPerInterval
+    this._bucketSize = bucketSize
+    this._interval = interval
+    this._tokensPerInterval = tokensPerInterval
 
-    this.reset()
+    this._tokens = this._bucketSize
+    this._lastRequest = Date.now()
   }
 
   /**
@@ -45,15 +40,15 @@ export class Porro {
     // Number of tokens refilled from the last call
     const now = Date.now()
     const tokens = Math.floor(
-      ((now - this._lastRequest) * this.tokensPerInterval) / this.interval
+      ((now - this._lastRequest) * this._tokensPerInterval) / this._interval
     )
 
     // Update bucket status
     this._tokens += tokens
     this._lastRequest += Math.ceil(
-      (tokens * this.interval) / this.tokensPerInterval
+      (tokens * this._interval) / this._tokensPerInterval
     )
-    if (this._tokens > this.bucketSize) {
+    if (this._tokens > this._bucketSize) {
       this.reset()
     }
   }
@@ -80,9 +75,9 @@ export class Porro {
     } else {
       // This request needs to wait
       const queuedTokens =
-        Math.ceil(Math.abs(this._tokens) / this.tokensPerInterval) *
-        this.tokensPerInterval
-      const tokenInterval = this.interval / this.tokensPerInterval
+        Math.ceil(Math.abs(this._tokens) / this._tokensPerInterval) *
+        this._tokensPerInterval
+      const tokenInterval = this._interval / this._tokensPerInterval
       return Math.round(queuedTokens * tokenInterval)
     }
   }
@@ -91,7 +86,7 @@ export class Porro {
    * Reset bucket to its initial status.
    */
   reset() {
-    this._tokens = this.bucketSize
+    this._tokens = this._bucketSize
     this._lastRequest = Date.now()
   }
 
