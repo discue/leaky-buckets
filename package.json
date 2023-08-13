@@ -1,5 +1,5 @@
 {
-  "name": "porro",
+  "name": "@discue/mongodb-leaky-bucket",
   "version": "2.1.1",
   "description": "Fast leaky bucket algorithm implementation without timers",
   "type": "module",
@@ -29,6 +29,9 @@
     "porro"
   ],
   "author": "Giacomo Gregoletto",
+  "contributors": [
+    "Stefan Pfaffel <s.pfaffel@gmail.com>"
+  ],
   "license": "MIT",
   "devDependencies": {
     "ava": "^5.1.1",
@@ -36,8 +39,11 @@
     "rollup": "^3.11.0",
     "standard": "^17.0.0"
   },
+  "bugs": {
+    "url": "https://github.com/discue/mongodb-leaky-bucket/issues"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/greguz/porro.git"
+    "url": "https://github.com/discue/mongodb-leaky-bucket"
   }
 }
