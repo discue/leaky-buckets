@@ -1,4 +1,4 @@
-import { Porro } from "./porro.mjs"
+import { Porro } from './porro.mjs'
 
 export class PersistentPorro extends Porro {
 
